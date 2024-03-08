@@ -11,6 +11,7 @@ resource "aws_subnet" "public" {
   availability_zone = var.azs[count.index]
 }
 
+
 resource "aws_subnet" "web" {
   count = length(var.web_subnets)
   vpc_id     = aws_vpc.main.id
