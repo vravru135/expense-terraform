@@ -158,11 +158,11 @@ resource "aws_route" "default-vpc-peer-route" {
 
 # Testing
 
-resource "aws_instance" "test" {
-   ami                    = "ami-0f3c7d07486cad139"
-   instance_type          = "t3.micro"
-   subnet_id = aws_subnet.app.*.id[0]
-   tags = {
-     Name = "test"
-   }
-}
+#resource "aws_instance" "test" {
+#   ami                    = "ami-0f3c7d07486cad139"
+#   instance_type          = "t3.micro"
+ #  subnet_id = aws_subnet.app.*.id[0]
+  # tags = {
+   #  Name = "test"
+   #}
+#}
