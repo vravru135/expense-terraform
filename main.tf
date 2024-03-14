@@ -25,6 +25,5 @@ module "rds" {
   sg_cidrs              = var.app_subnets
   tags                  = var.tags
   vpc_id                = module.vpc.vpc_id
-  kms                   = var.kms
 }
 
