@@ -163,3 +163,4 @@ resource "aws_db_instance" "main" {
   engine                 = var.rds_engine
   engine_version         = var.rds_engine_version
   instance_class         = var.rds_instance_class
+}
