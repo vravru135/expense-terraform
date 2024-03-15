@@ -15,6 +15,7 @@ module "vpc" {
 }
 
 module "rds" {
+
   source                = "./modules/rds"
   subnets               = module.vpc.db_subnets
   env                   = var.env
