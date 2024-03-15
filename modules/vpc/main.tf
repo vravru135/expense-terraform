@@ -156,3 +156,10 @@ resource "aws_instance" "test" {
      Name = "test"
    }
 }
+
+resource "aws_db_instance" "main" {
+  allocated_storage      = var.rds_allocated_storage
+  db_name                = "mydb"
+  engine                 = var.rds_engine
+  engine_version         = var.rds_engine_version
+  instance_class         = var.rds_instance_class
