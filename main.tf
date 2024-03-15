@@ -29,7 +29,7 @@ module "rds" {
 
 module "backend" {
 
-  source = "./modules/app"
+  source         = "./modules/app"
   app_port       = var.backend["app_port"]
   component      = "backend"
   env            = var.env
