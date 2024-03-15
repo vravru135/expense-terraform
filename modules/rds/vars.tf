@@ -7,3 +7,4 @@ variable "env" {}
 variable "sg_cidrs" {}
 variable "vpc_id" {}
 variable "subnets" {}
+variable "kms" {}
