@@ -17,3 +17,16 @@ account_id             = "290654222953"
 default_vpc_id         = "vpc-0c2874bae6814f94d"
 default_route_table_id = "rtb-09f38105ecd66b1e8"
 default_vpc_cidr       = "172.31.0.0/16"
+
+rds_allocated_storage = 20
+rds_engine = "mysql"
+rds_engine_version = "5.7.44"
+rds_instance_class = "db.t3.micro"
+
+backend = {
+  app_port       = 8080
+  instance_count = 1
+  instance_type  = "t3.small"
+}
+
+bastion_cidrs = [" /32"]
