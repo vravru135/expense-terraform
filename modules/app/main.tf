@@ -57,5 +57,5 @@ resource "aws_autoscaling_group" "main" {
     key                 = "Name"
     value               = "${var.env}-${var.component}"
     propagate_at_launch = true
-  }
+
 }
