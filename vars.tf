@@ -20,5 +20,5 @@ variable "bastion_cidrs" {}
 #variable "public_alb" {}
 #variable "backend_alb" {}
 #variable "route53_zone_id" {}
-variable "kms" {}
+#variable "kms" {}
 #variable "certificate_arn" {}
