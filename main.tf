@@ -1,4 +1,5 @@
 module "vpc" {
+
   source                 = "./modules/vpc"
   vpc_cidr_block         = var.vpc_cidr_block
   env                    = var.env
@@ -30,16 +31,16 @@ module "rds" {
 
 module "backend" {
 
-  source         = "./modules/app"
-  app_port       = var.backend["app_port"]
-  component      = "backend"
-  env            = var.env
-  instance_count = var.backend["instance_count"]
-  instance_type  = var.backend["instance_type"]
-  sg_cidrs       = var.web_subnets
-  subnets        = module.vpc.app_subnets
-  tags           = var.tags
-  vpc_id         = module.vpc.vpc_id
-  bastion_cidrs  = var.bastion_cidrs
+  source           = "./modules/app"
+  app_port         = var.backend["app_port"]
+  component        = "backend"
+  env              = var.env
+  instance_count   = var.backend["instance_count"]
+  instance_type    = var.backend["instance_type"]
+  sg_cidrs         = var.web_subnets
+  subnets          = module.vpc.app_subnets
+  tags             = var.tags
+  vpc_id           = module.vpc.vpc_id
+  bastion_cidrs    = var.bastion_cidrs
   prometheus_cidrs = var.prometheus_cidrs
 }
