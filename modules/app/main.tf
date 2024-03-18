@@ -86,24 +86,6 @@ resource "aws_autoscaling_group" "main" {
 
 }
 
-resource "aws_lb_target_group" "main" {
-  name                 = "${var.env}-${var.component}"
-  port                 = var.app_port
-  protocol             = "HTTP"
-  vpc_id               = var.vpc_id
-  deregistration_delay = 10
-
-  health_check {
-    enabled             = true
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    interval            = 5
-    matcher             = 200
-    path                = "/health"
-    timeout             = 2
-  }
-}
-
 
 
 
