@@ -42,9 +42,9 @@ resource "aws_launch_template" "main" {
     env       = var.env
   }))
 
-  #iam_instance_profile {
-   # name = aws_iam_instance_profile.main.name
-  #}
+  iam_instance_profile {
+    name = aws_iam_instance_profile.main.name
+  }
 
   block_device_mappings {
     device_name = "/dev/sda1"
