@@ -97,28 +97,13 @@ resource "aws_iam_role" "main" {
             "ssm:GetParameter"
           ],
           "Resource" : [
-            "arn:aws:ssm:us-east-1:633788536644:parameter/${var.env}.${var.component}.*",
-          ]
+            "arn:aws:ssm:us-east-1:633788536644:parameter/${var.env}.${var.component}.*"
         },
         {
           "Sid" : "ListResources",
           "Effect" : "Allow",
           "Action" : "ssm:DescribeParameters",
           "Resource" : "*"
-        },
-        {
-          "Sid" : "S3UploadForPrometheusAlerts",
-          "Effect" : "Allow",
-          "Action" : [
-            "s3:GetObject",
-            "s3:ListBucket",
-            "s3:PutObject",
-            "s3:DeleteObjectVersion",
-            "s3:DeleteObject"
-          ],
-          "Resource" : [
-            "arn:aws:s3:::d76-prometheus-alert-rules/*",
-            "arn:aws:s3:::d76-prometheus-alert-rules"
           ]
         }
       ]
