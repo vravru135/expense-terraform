@@ -9,4 +9,4 @@ variable "app_port" {}
 variable "sg_cidrs" {}
 variable "bastion_cidrs" {}
 variable "kms" {}
-#variable "prometheus_cidrs" {}
+variable "prometheus_cidrs" {}
