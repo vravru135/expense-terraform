@@ -16,10 +16,3 @@ variable "rds_engine_version" {}
 variable "rds_instance_class" {}
 variable "backend" {}
 variable "bastion_cidrs" {}
-variable "frontend" {}
-variable "public_alb" {}
-variable "backend_alb" {}
-variable "route53_zone_id" {}
-variable "kms" {}
-variable "certificate_arn" {}
-variable "prometheus_cidrs" {}
