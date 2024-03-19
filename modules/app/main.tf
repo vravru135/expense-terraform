@@ -40,7 +40,7 @@ resource "aws_launch_template" "main" {
       role_name = var.component
       env       = var.env
     }))
-}
+  }
 
 resource "aws_autoscaling_group" "main" {
   name                = "${var.env}-${var.component}"
@@ -59,4 +59,70 @@ resource "aws_autoscaling_group" "main" {
       value               = "${var.env}-${var.component}"
       propagate_at_launch = true
     }
+}
+
+resource "aws_iam_role" "main" {
+  name = "${var.env}-${var.component}"
+  tags = merge(var.tags, { Name = "${var.env}-${var.component}" })
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+}
+
+  inline_policy {
+    name = "SSM-Read-Access"
+
+    policy = jsonencode({
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Sid" : "Get Resources",
+          "Effect" : "Allow",
+          "Action" : [
+            "ssm:GetParameterHistory",
+            "ssm:GetParametersByPath",
+            "ssm:GetParameters",
+            "ssm:GetParameter"
+          ],
+          "Resource" : [
+            "arn:aws:ssm:us-east-1:633788536644:parameter/${var.env}.${var.component}.*",
+          ]
+        },
+        {
+          "Sid" : "ListResources",
+          "Effect" : "Allow",
+          "Action" : "ssm:DescribeParameters",
+          "Resource" : "*"
+        },
+        {
+          "Sid" : "S3UploadForPrometheusAlerts",
+          "Effect" : "Allow",
+          "Action" : [
+            "s3:GetObject",
+            "s3:ListBucket",
+            "s3:PutObject",
+            "s3:DeleteObjectVersion",
+            "s3:DeleteObject"
+          ],
+          "Resource" : [
+            "arn:aws:s3:::d76-prometheus-alert-rules/*",
+            "arn:aws:s3:::d76-prometheus-alert-rules"
+          ]
+        }
+      ]
+    })
+  }
+
 }
