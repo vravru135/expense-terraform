@@ -27,7 +27,7 @@ resource "aws_launch_template" "main" {
   image_id               = data.aws_ami.ami.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
-  ags                    = merge(var.tags, { Name = "${var.env}-${var.component}" })
+  tags                    = merge(var.tags, { Name = "${var.env}-${var.component}" })
 }
 
 resource "aws_autoscaling_group" "main" {
