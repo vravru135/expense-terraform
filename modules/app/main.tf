@@ -103,7 +103,6 @@ resource "aws_iam_role" "main" {
           "Effect" : "Allow",
           "Action" : "ssm:DescribeParameters",
           "Resource" : "*"
-          ]
         }
       ]
     })
