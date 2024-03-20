@@ -40,7 +40,7 @@ resource "aws_launch_template" "main" {
       role_name = var.component
       env       = var.env
     }))
-  }
+}
 
 resource "aws_autoscaling_group" "main" {
   name                = "${var.env}-${var.component}"
@@ -48,7 +48,6 @@ resource "aws_autoscaling_group" "main" {
   max_size            = var.instance_count + 5
   min_size            = var.instance_count
   vpc_zone_identifier = var.subnets
-
 
   launch_template {
     id      = aws_launch_template.main.id
@@ -79,33 +78,31 @@ resource "aws_iam_role" "main" {
     ]
   })
 
-}
-
   inline_policy {
     name = "SSM-read-access"
 
-    policy = jsonencode({
-      "Version" : "2012-10-17",
-      "Statement" : [
-        {
-          "Sid" : "Get Resources",
-          "Effect" : "Allow",
-          "Action" : [
-            "ssm:GetParameterHistory",
-            "ssm:GetParametersByPath",
-            "ssm:GetParameters",
-            "ssm:GetParameter"
-          ],
-          "Resource" : "arn:aws:ssm:us-east-1:633788536644:parameter/${var.env}.${var.component}.*"
-        },
-        {
-          "Sid" : "ListResources",
-          "Effect" : "Allow",
-          "Action" : "ssm:DescribeParameters",
-          "Resource" : "*"
-        }
-      ]
-    })
-  }
+   policy = jsonencode({
+  	"Version": "2012-10-17",
+  	"Statement": [
+  		{
+  			"Sid": "Get Resources",
+  			"Effect": "Allow",
+  			"Action": [
+  				"ssm:GetParameterHistory",
+  				"ssm:GetParametersByPath",
+  				"ssm:GetParameters",
+  				"ssm:GetParameter"
+  			],
+  			"Resource": "arn:aws:ssm:us-east-1:290654222953:parameter/${var.env}.${var.component}.*"
+  		},
+  		{
+  			"Sid": "List Resources",
+  			"Effect": "Allow",
+  			"Action": "ssm:DescribeParameters",
+  			"Resource": "*"
+  		}
+  	]
+  }}
+}
 
 }
