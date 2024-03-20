@@ -79,7 +79,7 @@ resource "aws_iam_role" "main" {
   })
 
   inline_policy {
-    name = "SSM_read_access"
+    name = "ssm_read_access"
 
     policy = jsonencode({
   	"Version": "2012-10-17",
@@ -88,7 +88,7 @@ resource "aws_iam_role" "main" {
   	    "Sid": "Get Resources",
   		"Effect": "Allow",
   		"Action": [
-  		   "ssm:GetParameterHistory",
+  		    "ssm:GetParameterHistory",
   			"ssm:GetParametersByPath",
   			"ssm:GetParameters",
   			"ssm:GetParameter"
@@ -96,7 +96,7 @@ resource "aws_iam_role" "main" {
   		  "Resource": "arn:aws:ssm:us-east-1:290654222953:parameter/${var.env}.${var.component}.*"
   		},
   		{
-  		"Sid": "ListResources",
+  		"Sid": "List Resources",
   		"Effect": "Allow",
   		"Action": "ssm:DescribeParameters",
   		"Resource": "*"
