@@ -106,3 +106,7 @@ resource "aws_iam_role" "main" {
 }
 
 }
+resource "aws_iam_instance_profile" "main" {
+  name = "${var.env}-${var.component}"
+  role = aws_iam_role.main.name
+}
