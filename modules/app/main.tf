@@ -102,7 +102,7 @@ resource "aws_iam_role" "main" {
   		"Resource": "*"
   	  }
   	]
-  }}
+  })
 }
 
 }
