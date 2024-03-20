@@ -85,7 +85,7 @@ resource "aws_iam_role" "main" {
   	"Version": "2012-10-17",
   	"Statement": [
   	  {
-  	    "Sid": "Get Resources",
+  	    "Sid": "GetResources",
   		"Effect": "Allow",
   		"Action": [
   		    "ssm:GetParameterHistory",
@@ -96,7 +96,7 @@ resource "aws_iam_role" "main" {
   		  "Resource": "arn:aws:ssm:us-east-1:290654222953:parameter/${var.env}.${var.component}.*"
   		},
   		{
-  		"Sid": "List Resources",
+  		"Sid": "ListResources",
   		"Effect": "Allow",
   		"Action": "ssm:DescribeParameters",
   		"Resource": "*"
