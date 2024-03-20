@@ -40,6 +40,9 @@ resource "aws_launch_template" "main" {
       role_name = var.component
       env       = var.env
     }))
+      iam_instance_profile {
+        name = aws_iam_instance_profile.main.name
+      }
 }
 
 resource "aws_autoscaling_group" "main" {
