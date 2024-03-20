@@ -60,9 +60,9 @@ resource "aws_autoscaling_group" "main" {
   }
 }
 
-resource "aws_iam_role" "main" {
-  name = "${var.env}-${var.component}"
-  tags = merge(var.tags, { Name = "${var.env}-${var.component}" })
+#resource "aws_iam_role" "main" {
+ # name = "${var.env}-${var.component}"
+  #tags = merge(var.tags, { Name = "${var.env}-${var.component}" })
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
