@@ -148,12 +148,12 @@ resource "aws_vpc_peering_connection" "peer" {
 #}
 
 ## Testing
-resource "aws_instance" "test" {
-   ami                    = "ami-0f3c7d07486cad139"
-   instance_type          = "t3.micro"
-   subnet_id              = aws_subnet.public.*.id[0]
-   tags = {
-     Name = "test"
-   }
-}
+#resource "aws_instance" "test" {
+ #  ami                    = "ami-0f3c7d07486cad139"
+   #instance_type          = "t3.micro"
+   #subnet_id              = aws_subnet.public.*.id[0]
+   #tags = {
+   #  Name = "test"
+   #}
+#}
 
